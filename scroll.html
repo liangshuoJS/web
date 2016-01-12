@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+*{margin:0; padding:0;}
+#box{width:300px;height:300px; margin:100px auto; overflow:hidden;}
+#con_box{float:left; width:280px; height:100%; position:relative; top:0; left:0;}
+#con{width:100%; position:absolute; top:0; left:0;}
+#bar_box{float:left; width:20px; height:100%; background:#ccc; position:relative; top:0; left:0;}
+#bar{width:20px; height:50px; background:#333; position:absolute; top:0; left:0;}
+</style>
+<script>
+function addEvent(obj,sEv,fn){
+	if (obj.addEventListener) {
+		obj.addEventListener(sEv,fn,false);
+	}else{
+		obj.attachEvent('on'+sEv,fn);
+	}
+}
+addWheel = function(obj,fn){
+	function fnWheel(ev){
+		var bDir = true;
+		var oEvent = ev||event;
+		if (oEvent.wheelDelta) {
+			if (oEvent.wheelDelta<0) {
+				bDir = true;
+			}else{
+				bDir = false;
+			}
+		}else{
+			if (oEvent.detail>0) {
+				bDir = true;
+			}else{
+				bDir = false;
+			}
+		}
+		fn&&fn(bDir);
+		oEvent.preventDefault&&oEvent.preventDefault();
+		
+	}
+	if (window.navigator.userAgent.toLowerCase().indexOf('firefox')!=-1) {
+		addEvent(obj,'DOMMouseScroll',fnWheel);
+	}else{
+		addEvent(obj,'mousewheel',fnWheel);
+	}
+}
+
+window.onload = function(){
+	var oBox = document.getElementById('box');
+	var oConBox = document.getElementById('con_box');
+	var oCon = document.getElementById('con');
+	var oBarBox = document.getElementById('bar_box');
+	var oBar = document.getElementById('bar');
+
+	oBar.onmousedown = function(ev){
+		var oEvent = ev||event;
+		var disY = oEvent.clientY - oBar.offsetTop;
+		document.onmousemove = function(ev){
+			var oEvent = ev||event;
+			var t = oEvent.clientY - disY;
+			changeTop(t);
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			oBox.releaseCapture&&oBox.releaseCapture();
+		}
+		oBox.setCapture&&oBox.setCapture();
+		return false;
+	}
+	function changeTop(t){
+		if (t<0) {
+			t = 0;
+		}else if(t>oBarBox.offsetHeight - oBar.offsetHeight){
+			t = oBarBox.offsetHeight - oBar.offsetHeight
+		}
+		oBar.style.top = t+'px';
+		var scale = t/(oBarBox.offsetHeight - oBar.offsetHeight);
+		oCon.style.top = -scale*(oCon.scrollHeight - oConBox.offsetHeight)+'px';
+	}
+	addWheel(oBox,function(bDir){
+		var t = oBar.offsetTop;
+		if (bDir) {
+			t += 10; 
+		}else{
+			t -=10;
+		}
+		changeTop(t);
+	})
+
+}
+</script>
+</head>
+
+<body>
+<div id="box">
+	<div id="con_box">
+    	<div id="con">Sebastian Thrun（塞巴斯蒂安·特伦），Google X 实验室的联合创始人，斯坦福大学终身教授，机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家，Google 无人驾驶汽车之父，开发了世界首个无人驾驶汽车。
+教授，机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家机器人与人工智能领域专家，Google 无人驾驶汽车之父，开发了世界首个无人驾驶汽车。
+而 Google X 实验室（以下简称 “X”）则已经为人所知，在这里除了无人驾驶汽车之外， 还诞生了 Google Glass、用气球发射无线信号的 Loon 项目等。X 定位为 Google 内部的 “登月实验室”，负责研发一些能给人类带来重大改变的非互联网项目。Google 内部有一个部门 Google Research，负责互联网方面的研究。与 X 相比，二者的研究范围划分就是比特和原子范围。</div>
+    </div>
+    <div id="bar_box">
+    	<div id="bar"></div>
+    </div>
+</div>
+</body>
+</html>
